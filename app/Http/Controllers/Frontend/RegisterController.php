@@ -1,0 +1,110 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Models\Participant;
+use App\Models\ShirtSize;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Mail\RegistrationSuccessMail;
+use Illuminate\Support\Facades\Mail;
+
+use App\Http\Controllers\Controller;
+
+class RegisterController extends Controller
+{
+    public function create()
+    {
+        $shirtSizes = ShirtSize::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('frontend.register', compact('shirtSizes'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'gender' => 'required',
+            'birth_date' => 'required',
+            'city' => 'required',
+            'shirt_size_id' => 'required',
+            'emergency_contact_name' => 'required',
+            'emergency_contact_phone' => 'required',
+        ]);
+
+        $last = Participant::latest('id')->first();
+
+        $nextNumber = $last
+            ? $last->id + 1
+            : 1;
+
+        $registrationCode =
+            'IYF26-' .
+            str_pad(
+                $nextNumber,
+                6,
+                '0',
+                STR_PAD_LEFT
+            );
+
+        $participant = Participant::create([
+
+            'registration_code' => $registrationCode,
+
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+
+            'gender' => $request->gender,
+
+            'birth_date' => $request->birth_date,
+
+            'city' => $request->city,
+
+            'shirt_size_id' => $request->shirt_size_id,
+
+            'emergency_contact_name' =>
+            $request->emergency_contact_name,
+
+            'emergency_contact_phone' =>
+            $request->emergency_contact_phone,
+
+            'medical_notes' =>
+            $request->medical_notes,
+
+            'payment_status' => 'pending',
+
+            'portal_token' => Str::uuid(),
+
+            'agreed_terms' => true,
+            'agreed_media' => true,
+        ]);
+        Mail::to($participant->email)
+            ->send(
+                new RegistrationSuccessMail(
+                    $participant
+                )
+            );
+
+        return redirect(
+            '/participant/' .
+                $participant->portal_token
+        );
+    }
+    public function dashboard($token)
+    {
+        $participant = Participant::where(
+            'portal_token',
+            $token
+        )->firstOrFail();
+
+        return view(
+            'frontend.participant-dashboard',
+            compact('participant')
+        );
+    }
+}
