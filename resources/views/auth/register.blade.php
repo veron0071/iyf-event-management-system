@@ -1,52 +1,130 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+  <style>
+    body { background: #FAF7F0; }
+    .register-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .register-card {
+      background: #fff;
+      border: 1px solid #E4DDD0;
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .register-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #4A8C62;
+      margin-bottom: 6px;
+    }
+    .register-title {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A3A2A;
+      margin-bottom: 28px;
+    }
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .field input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #E4DDD0;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: #1C1C1C;
+      background: #FAF7F0;
+      outline: none;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .field input:focus { border-color: #4A8C62; background: #fff; }
+    .field-error { font-size: 12px; color: #c0392b; margin-top: 4px; }
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: #1A3A2A;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: #2D5C40; }
+    .login-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+    }
+    .login-link a { color: #2D5C40; font-weight: 500; text-decoration: none; }
+    .login-link a:hover { text-decoration: underline; }
+  </style>
+
+  <div class="register-wrap">
+    <div class="register-card">
+
+      <div class="register-eyebrow">International Yoga Festival 2026</div>
+      <div class="register-title">Buat Akun Admin</div>
+
+      <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <div class="field">
+          <label for="name">Nama</label>
+          <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
+          @error('name')<div class="field-error">{{ $message }}</div>@enderror
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
+          @error('email')<div class="field-error">{{ $message }}</div>@enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" required autocomplete="new-password" />
+          @error('password')<div class="field-error">{{ $message }}</div>@enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="field">
+          <label for="password_confirmation">Konfirmasi Password</label>
+          <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
+          @error('password_confirmation')<div class="field-error">{{ $message }}</div>@enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+        <button type="submit" class="btn-submit">Daftar →</button>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+        <p class="login-link">
+          Sudah punya akun? <a href="{{ route('login') }}">Masuk di sini</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+
 </x-guest-layout>
