@@ -35,6 +35,11 @@ class Participant extends Model
 
         'agreed_terms',
         'agreed_media',
+        'participant_type',
+        'npp',
+        'work_unit',
+        'payment_proof',
+        
     ];
 
     public function shirtSize()

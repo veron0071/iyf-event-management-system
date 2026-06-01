@@ -2,268 +2,228 @@
 
 <div class="min-h-screen bg-gray-50">
 
-```
-<div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="max-w-7xl mx-auto px-6 py-8">
 
-    <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center justify-between mb-8">
 
-        <div>
+            <div>
 
-            <h1 class="text-3xl font-bold text-gray-900">
-                Participant Detail
-            </h1>
+                <h1 class="text-3xl font-bold text-gray-900">
+                    Participant Detail
+                </h1>
 
-            <p class="text-gray-500">
-                {{ $participant->registration_code }}
-            </p>
+                <p class="text-gray-500">
+                    {{ $participant->registration_code }}
+                </p>
+
+            </div>
+
+            
+                <a
+                    href="/admin/participants"
+                    class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900"
+                >
+                    Back
+                </a>
 
         </div>
 
-        <a
-            href="/admin/participants"
-            class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900"
-        >
-            Back
-        </a>
+        <div class="grid lg:grid-cols-3 gap-6">
 
-    </div>
+            <div class="lg:col-span-2">
 
-    <div class="grid lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow p-6">
 
-        <div class="lg:col-span-2">
+                    <h2 class="text-xl font-semibold mb-6">
+                        Participant Information
+                    </h2>
 
-            <div class="bg-white rounded-xl shadow p-6">
+                    <div class="grid md:grid-cols-2 gap-4">
 
-                <h2 class="text-xl font-semibold mb-6">
-                    Participant Information
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-4">
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Full Name
+                        <div>
+                            <div class="text-gray-500 text-sm">Full Name</div>
+                            <div class="font-semibold">{{ $participant->name }}</div>
                         </div>
 
-                        <div class="font-semibold">
-                            {{ $participant->name }}
+                        <div>
+                            <div class="text-gray-500 text-sm">Email</div>
+                            <div class="font-semibold">{{ $participant->email }}</div>
                         </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Phone</div>
+                            <div class="font-semibold">{{ $participant->phone }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Gender</div>
+                            <div class="font-semibold">{{ ucfirst($participant->gender) }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Birth Date</div>
+                            <div class="font-semibold">{{ $participant->birth_date }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">City</div>
+                            <div class="font-semibold">{{ $participant->city }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Participant Type</div>
+                            <div class="font-semibold">{{ ucfirst($participant->participant_type) }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">T-Shirt Size</div>
+                            <div class="font-semibold">{{ $participant->shirtSize->name ?? '-' }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Emergency Contact</div>
+                            <div class="font-semibold">{{ $participant->emergency_contact_name }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-gray-500 text-sm">Emergency Phone</div>
+                            <div class="font-semibold">{{ $participant->emergency_contact_phone }}</div>
+                        </div>
+
+                        @if($participant->npp)
+                            <div>
+                                <div class="text-gray-500 text-sm">NPP / NIP</div>
+                                <div class="font-semibold">{{ $participant->npp }}</div>
+                            </div>
+
+                            <div>
+                                <div class="text-gray-500 text-sm">Unit Kerja</div>
+                                <div class="font-semibold">{{ $participant->work_unit ?? '-' }}</div>
+                            </div>
+                        @endif
+
                     </div>
 
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Email
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->email }}
-                        </div>
-                    </div>
+                    <hr class="my-6">
 
                     <div>
-                        <div class="text-gray-500 text-sm">
-                            Phone
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->phone }}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Gender
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ ucfirst($participant->gender) }}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Birth Date
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->birth_date }}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            City
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->city }}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Emergency Contact
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->emergency_contact_name }}
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="text-gray-500 text-sm">
-                            Emergency Phone
-                        </div>
-
-                        <div class="font-semibold">
-                            {{ $participant->emergency_contact_phone }}
-                        </div>
-                    </div>
-
-                </div>
-
-                <hr class="my-6">
-
-                <div>
-
-                    <div class="text-gray-500 text-sm mb-2">
-                        Medical Notes
-                    </div>
-
-                    <div>
-                        {{ $participant->medical_notes ?: '-' }}
+                        <div class="text-gray-500 text-sm mb-2">Medical Notes</div>
+                        <div>{{ $participant->medical_notes ?: '-' }}</div>
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <div>
 
-        <div>
+                <div class="bg-white rounded-xl shadow p-6">
 
-            <div class="bg-white rounded-xl shadow p-6">
+                    <h2 class="text-xl font-semibold mb-4">
+                        Registration Status
+                    </h2>
 
-                <h2 class="text-xl font-semibold mb-4">
-                    Registration Status
-                </h2>
+                    <div class="space-y-4">
 
-                <div class="space-y-4">
-
-                    <div>
-
-                        <div class="text-gray-500 text-sm">
-                            Payment Status
+                        <div>
+                            <div class="text-gray-500 text-sm">Payment Status</div>
+                            @if($participant->payment_status == 'paid')
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                                    PAID
+                                </span>
+                            @else
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
+                                    PENDING
+                                </span>
+                            @endif
                         </div>
 
-                        @if($participant->payment_status == 'paid')
+                        @if($participant->payment_proof)
+                            <div>
+                                <div class="text-gray-500 text-sm mb-2">Payment Proof</div>
+                                @php
+                                    $ext = strtolower(pathinfo($participant->payment_proof, PATHINFO_EXTENSION));
+                                @endphp
+                                @if(in_array($ext, ['jpg', 'jpeg', 'png', 'webp']))
+                                    <a href="{{ asset('storage/' . $participant->payment_proof) }}" target="_blank">
+                                        <img
+                                            src="{{ asset('storage/' . $participant->payment_proof) }}"
+                                            alt="Payment Proof"
+                                            class="w-full rounded-lg border hover:opacity-90 transition"
+                                        >
+                                    </a>
+                                @else
+                                    
+                                        href="{{ asset('storage/' . $participant->payment_proof) }}"
+                                        target="_blank"
+                                        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                                    >
+                                        View Payment Proof (PDF)
+                                    </a>
+                                @endif
+                            </div>
+                        @endif
 
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-                                PAID
-                            </span>
+                        @if($participant->payment_status == 'pending')
+                            <form
+                                action="/admin/participants/{{ $participant->id }}/verify-payment"
+                                method="POST"
+                            >
+                                @csrf
+                                <button
+                                    type="submit"
+                                    class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium"
+                                >
+                                    ✓ Verify Payment
+                                </button>
+                            </form>
+                        @endif
 
-                        @else
+                        <div>
+                            <div class="text-gray-500 text-sm">Check In Status</div>
+                            @if($participant->checkin_status)
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                                    CHECKED IN
+                                </span>
+                            @else
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                                    NOT CHECKED IN
+                                </span>
+                            @endif
+                        </div>
 
-                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
-                                PENDING
-                            </span>
+                        @if($participant->paid_at)
+                            <div>
+                                <div class="text-gray-500 text-sm">Paid At</div>
+                                <div class="font-medium">{{ $participant->paid_at }}</div>
+                            </div>
+                        @endif
 
+                        @if($participant->checkin_at)
+                            <div>
+                                <div class="text-gray-500 text-sm">Check In At</div>
+                                <div class="font-medium">{{ $participant->checkin_at }}</div>
+                            </div>
                         @endif
 
                     </div>
 
-                    <div>
+                </div>
 
-                        <div class="text-gray-500 text-sm">
-                            Check In Status
-                        </div>
+                <div class="bg-white rounded-xl shadow p-6 mt-6 text-center">
 
-                        @if($participant->checkin_status)
+                    <h2 class="text-xl font-semibold mb-4">
+                        QR Code
+                    </h2>
 
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                                CHECKED IN
-                            </span>
-
-                        @else
-
-                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
-                                NOT CHECKED IN
-                            </span>
-
-                        @endif
-
+                    <div class="flex justify-center">
+                        {!! QrCode::size(220)->generate($participant->portal_token) !!}
                     </div>
 
-                    @if($participant->paid_at)
+                    <div class="mt-4 text-xs text-gray-500 break-all">
+                        {{ $participant->portal_token }}
+                    </div>
 
-                        <div>
-
-                            <div class="text-gray-500 text-sm">
-                                Paid At
-                            </div>
-
-                            <div class="font-medium">
-                                {{ $participant->paid_at }}
-                            </div>
-
-                        </div>
-
-                    @endif
-
-                    @if($participant->checkin_at)
-
-                        <div>
-
-                            <div class="text-gray-500 text-sm">
-                                Check In At
-                            </div>
-
-                            <div class="font-medium">
-                                {{ $participant->checkin_at }}
-                            </div>
-
-                        </div>
-
-                    @endif
-
-                </div>
-
-                @if($participant->payment_status == 'pending')
-
-                    <form
-                        action="/admin/participants/{{ $participant->id }}/verify-payment"
-                        method="POST"
-                        class="mt-6"
-                    >
-                        @csrf
-
-                        <button
-                            type="submit"
-                            class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg"
-                        >
-                            Verify Payment
-                        </button>
-
-                    </form>
-
-                @endif
-
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-6 mt-6 text-center">
-
-                <h2 class="text-xl font-semibold mb-4">
-                    QR Code
-                </h2>
-
-                <div class="flex justify-center">
-
-                    {!! QrCode::size(220)->generate($participant->portal_token) !!}
-
-                </div>
-
-                <div class="mt-4 text-xs text-gray-500 break-all">
-                    {{ $participant->portal_token }}
                 </div>
 
             </div>
@@ -271,9 +231,6 @@
         </div>
 
     </div>
-
-</div>
-```
 
 </div>
 

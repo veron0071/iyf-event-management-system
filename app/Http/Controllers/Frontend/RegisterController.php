@@ -2,43 +2,95 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
+use App\Mail\RegistrationSuccessMail;
+use App\Models\Employee;
 use App\Models\Participant;
 use App\Models\ShirtSize;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Mail\RegistrationSuccessMail;
 use Illuminate\Support\Facades\Mail;
-
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
     public function create()
     {
-        $shirtSizes = ShirtSize::where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        $shirtSizes = ShirtSize::where(
+            'is_active',
+            true
+        )
+        ->orderBy('sort_order')
+        ->get();
 
-        return view('frontend.register', compact('shirtSizes'));
+        return view(
+            'frontend.register',
+            compact('shirtSizes')
+        );
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'gender' => 'required',
-            'birth_date' => 'required',
-            'city' => 'required',
-            'shirt_size_id' => 'required',
-            'emergency_contact_name' => 'required',
-            'emergency_contact_phone' => 'required',
+
+            'participant_type' =>
+                'required|in:general,employee',
+
+            'name' =>
+                'required|string|max:255',
+
+            'email' =>
+                'required|email|unique:participants,email',
+
+            'phone' =>
+                'required',
+
+            'gender' =>
+                'required',
+
+            'birth_date' =>
+                'required|date',
+
+            'city' =>
+                'required',
+
+            'shirt_size_id' =>
+                'required',
+
+            'emergency_contact_name' =>
+                'required',
+
+            'emergency_contact_phone' =>
+                'required',
+
         ]);
 
-        $last = Participant::latest('id')->first();
+        if (
+            $request->participant_type ===
+            'employee'
+        ) {
 
-        $nextNumber = $last
+            $request->validate([
+                'npp' => 'required'
+            ]);
+        }
+
+        if (
+            $request->participant_type ===
+            'general'
+        ) {
+
+            $request->validate([
+                'payment_proof' =>
+                    'required|file|mimes:jpg,jpeg,png,pdf|max:5120'
+            ]);
+        }
+
+        $last =
+            Participant::latest('id')
+            ->first();
+
+        $nextNumber =
+            $last
             ? $last->id + 1
             : 1;
 
@@ -51,56 +103,167 @@ class RegisterController extends Controller
                 STR_PAD_LEFT
             );
 
-        $participant = Participant::create([
+        $paymentStatus = 'pending';
+        $paidAt = null;
 
-            'registration_code' => $registrationCode,
+        $npp = null;
+        $workUnit = null;
 
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
+        $paymentProof = null;
 
-            'gender' => $request->gender,
+        if (
+            $request->participant_type ===
+            'employee'
+        ) {
 
-            'birth_date' => $request->birth_date,
+            $employee =
+                Employee::where(
+                    'npp',
+                    $request->npp
+                )->first();
 
-            'city' => $request->city,
+            if (!$employee) {
 
-            'shirt_size_id' => $request->shirt_size_id,
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'npp' =>
+                        'NPP/NIP tidak ditemukan.'
+                    ]);
+            }
 
-            'emergency_contact_name' =>
-            $request->emergency_contact_name,
+            $alreadyRegistered =
+                Participant::where(
+                    'npp',
+                    $request->npp
+                )->exists();
 
-            'emergency_contact_phone' =>
-            $request->emergency_contact_phone,
+            if ($alreadyRegistered) {
 
-            'medical_notes' =>
-            $request->medical_notes,
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'npp' =>
+                        'NPP/NIP sudah terdaftar.'
+                    ]);
+            }
 
-            'payment_status' => 'pending',
+            $paymentStatus = 'paid';
 
-            'portal_token' => Str::uuid(),
+            $paidAt = now();
 
-            'agreed_terms' => true,
-            'agreed_media' => true,
-        ]);
-        Mail::to($participant->email)
-            ->send(
-                new RegistrationSuccessMail(
-                    $participant
+            $npp =
+                $employee->npp;
+
+            $workUnit =
+                $employee->employee_type;
+        }
+        else {
+
+            if (
+                $request->hasFile(
+                    'payment_proof'
                 )
-            );
+            ) {
+
+                $paymentProof =
+                    $request
+                    ->file(
+                        'payment_proof'
+                    )
+                    ->store(
+                        'payment-proofs',
+                        'public'
+                    );
+            }
+        }
+
+        $participant =
+            Participant::create([
+
+                'registration_code' =>
+                    $registrationCode,
+
+                'name' =>
+                    $request->name,
+
+                'email' =>
+                    $request->email,
+
+                'phone' =>
+                    $request->phone,
+
+                'gender' =>
+                    $request->gender,
+
+                'birth_date' =>
+                    $request->birth_date,
+
+                'city' =>
+                    $request->city,
+
+                'shirt_size_id' =>
+                    $request->shirt_size_id,
+
+                'emergency_contact_name' =>
+                    $request->emergency_contact_name,
+
+                'emergency_contact_phone' =>
+                    $request->emergency_contact_phone,
+
+                'medical_notes' =>
+                    $request->medical_notes,
+
+                'participant_type' =>
+                    $request->participant_type,
+
+                'npp' =>
+                    $npp,
+
+                'work_unit' =>
+                    $workUnit,
+
+                'payment_proof' =>
+                    $paymentProof,
+
+                'payment_status' =>
+                    $paymentStatus,
+
+                'paid_at' =>
+                    $paidAt,
+
+                'portal_token' =>
+                    Str::uuid(),
+
+                'agreed_terms' =>
+                    true,
+
+                'agreed_media' =>
+                    true,
+            ]);
+
+        Mail::to(
+            $participant->email
+        )->send(
+            new RegistrationSuccessMail(
+                $participant
+            )
+        );
 
         return redirect(
             '/participant/' .
-                $participant->portal_token
+            $participant->portal_token
         );
     }
+
     public function dashboard($token)
     {
-        $participant = Participant::where(
-            'portal_token',
-            $token
-        )->firstOrFail();
+        $participant =
+            Participant::where(
+                'portal_token',
+                $token
+            )
+            ->firstOrFail();
 
         return view(
             'frontend.participant-dashboard',

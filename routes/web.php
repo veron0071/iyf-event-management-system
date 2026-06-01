@@ -17,22 +17,13 @@ use App\Http\Controllers\Admin\AdminParticipantController;
 
 Route::get('/', HomeController::class);
 
-Route::get('/register-event', [
-    RegisterController::class,
-    'create'
-]);
+Route::get('/register-event', [RegisterController::class, 'create']);
+Route::post('/register-event', [RegisterController::class, 'store']);
 
-Route::post('/register-event', [
-    RegisterController::class,
-    'store'
-]);
+Route::get('/participant/{token}', [RegisterController::class, 'dashboard']);
 
-Route::get(
-    '/participant/{token}',
-    [RegisterController::class, 'dashboard']
-);
-
-
+Route::get('/checkin/{token}', [AdminParticipantController::class, 'checkin']);
+//Route::get('/event.ics', fn() => response(/* isi .ics */)->header('Content-Type', 'text/calendar'))->name('event.ics');
 
 /*
 |--------------------------------------------------------------------------
@@ -41,21 +32,9 @@ Route::get(
 */
 
 Route::middleware('auth')->group(function () {
-
-    Route::get(
-        '/profile',
-        [ProfileController::class, 'edit']
-    )->name('profile.edit');
-
-    Route::patch(
-        '/profile',
-        [ProfileController::class, 'update']
-    )->name('profile.update');
-
-    Route::delete(
-        '/profile',
-        [ProfileController::class, 'destroy']
-    )->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 /*
@@ -66,38 +45,19 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth'])
     ->prefix('admin')
+    ->name('admin.')
     ->group(function () {
 
-        Route::get(
-            '/',
-            [DashboardController::class, 'index']
-        );
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get(
-            '/participants',
-            [AdminParticipantController::class, 'index']
-        );
+        Route::get('/participants', [AdminParticipantController::class, 'index'])->name('participants.index');
+        Route::get('/participants/export', [AdminParticipantController::class, 'export'])->name('participants.export');
+        Route::get('/participants/{participant}', [AdminParticipantController::class, 'show'])->name('participants.show');
+        Route::post('/participants/{participant}/verify-payment', [AdminParticipantController::class, 'verifyPayment'])->name('participants.verify-payment');
+        Route::patch('/participants/{participant}/verify', [AdminParticipantController::class, 'verifyPayment'])->name('participants.verify');
 
-        Route::get(
-            '/participants/{participant}',
-            [AdminParticipantController::class, 'show']
-        );
-        Route::post(
-            '/participants/{participant}/verify-payment',
-            [AdminParticipantController::class, 'verifyPayment']
-        );
-        Route::get(
-            '/scanner',
-            [AdminParticipantController::class, 'scanner']
-        );
-
-        Route::post(
-            '/scanner/checkin',
-            [AdminParticipantController::class, 'processCheckin']
-        );
+        Route::get('/scanner', [AdminParticipantController::class, 'scanner'])->name('scanner');
+        Route::post('/scanner/checkin', [AdminParticipantController::class, 'processCheckin'])->name('scanner.checkin');
     });
-Route::get(
-    '/checkin/{token}',
-    [AdminParticipantController::class, 'checkin']
-);
+
 require __DIR__ . '/auth.php';

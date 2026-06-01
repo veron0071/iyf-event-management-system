@@ -10,13 +10,7 @@ class ShirtSizeSeeder extends Seeder
     public function run(): void
     {
         $sizes = [
-            'XS',
-            'S',
-            'M',
-            'L',
-            'XL',
-            'XXL',
-            'XXXL',
+            'ALL-SIZE',
         ];
 
         foreach ($sizes as $index => $size) {
