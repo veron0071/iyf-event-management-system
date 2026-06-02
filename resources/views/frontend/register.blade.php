@@ -417,7 +417,7 @@
             <div class="reg-chips">
                 <span class="chip">📅 Saturday, 20 June 2026</span>
                 <span class="chip">📍 UNWAHAS Stadium, Gunungpati</span>
-                <span class="chip">🎫 Rp 50.000</span>
+                <span class="chip">🎫 FREE</span>
             </div>
         </div>
 
