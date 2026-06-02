@@ -125,7 +125,7 @@
 
                     <div class="space-y-4">
 
-                        <div>
+                        {{-- <div>
                             <div class="text-gray-500 text-sm">Payment Status</div>
                             @if($participant->payment_status == 'paid')
                                 <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
@@ -136,9 +136,9 @@
                                     PENDING
                                 </span>
                             @endif
-                        </div>
+                        </div> --}}
 
-                        @if($participant->payment_proof)
+                        {{-- @if($participant->payment_proof)
                             <div>
                                 <div class="text-gray-500 text-sm mb-2">Payment Proof</div>
                                 @php
@@ -162,10 +162,10 @@
                                     </a>
                                 @endif
                             </div>
-                        @endif
+                        @endif --}}
 
                         @if($participant->payment_status == 'pending')
-                            <form
+                            {{-- <form
                                 action="/admin/participants/{{ $participant->id }}/verify-payment"
                                 method="POST"
                             >
@@ -176,7 +176,7 @@
                                 >
                                     ✓ Verify Payment
                                 </button>
-                            </form>
+                            </form> --}}
                         @endif
 
                         <div>
@@ -191,13 +191,13 @@
                                 </span>
                             @endif
                         </div>
-
+{{-- 
                         @if($participant->paid_at)
                             <div>
                                 <div class="text-gray-500 text-sm">Paid At</div>
                                 <div class="font-medium">{{ $participant->paid_at }}</div>
                             </div>
-                        @endif
+                        @endif --}}
 
                         @if($participant->checkin_at)
                             <div>

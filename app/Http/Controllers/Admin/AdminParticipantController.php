@@ -50,19 +50,19 @@ class AdminParticipantController extends Controller
         return view('admin.participants.show', compact('participant'));
     }
 
-    public function verifyPayment(Participant $participant)
-    {
-        $participant->update([
-            'payment_status' => 'paid',
-            'paid_at'        => now(),
-        ]);
+    // public function verifyPayment(Participant $participant)
+    // {
+    //     $participant->update([
+    //         'payment_status' => 'paid',
+    //         'paid_at'        => now(),
+    //     ]);
 
-        Mail::to($participant->email)->send(
-            new PaymentVerifiedMail($participant)
-        );
+    //     Mail::to($participant->email)->send(
+    //         new PaymentVerifiedMail($participant)
+    //     );
 
-        return back()->with('success', "Pembayaran {$participant->name} berhasil diverifikasi.");
-    }
+    //     return back()->with('success', "Pembayaran {$participant->name} berhasil diverifikasi.");
+    // }
 
     public function checkin($token)
     {

@@ -319,9 +319,9 @@
       <h1 class="success-title">You're <em>Registered!</em></h1>
       <p class="success-sub">
         @if($participant->payment_status === 'paid')
-          Your payment is confirmed. See you on the mat!
+          Your registration is confirmed. See you on the mat!
         @else
-          Your spot is secured. Please wait for payment verification from our team.
+          Your spot is secured. 
         @endif
       </p>
     </div>
@@ -360,12 +360,12 @@
             <div class="tf-value" style="font-size:13px; word-break:break-all;">{{ $participant->email }}</div>
           </div>
           <div class="ticket-field">
-            <div class="tf-label">Payment Status</div>
+            <div class="tf-label">Registration Status</div>
             <div class="tf-value">
               @if(strtolower($participant->payment_status) === 'paid')
                 <span class="status-badge status-paid">
                   <span class="status-dot"></span>
-                  PAID
+                  CONFIRMED
                 </span>
               @else
                 <span class="status-badge status-unpaid">

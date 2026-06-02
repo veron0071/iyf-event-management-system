@@ -615,7 +615,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="payment-section" class="reg-section">
+                {{-- <div id="payment-section" class="reg-section">
 
                     <p class="reg-section-label">
                         Payment
@@ -674,7 +674,7 @@
 
                     </div>
 
-                </div>
+                </div> --}}
 
                 {{-- Summary + Agreement --}}
                 <div class="reg-section" style="display: flex; flex-direction: column; gap: 16px;">
@@ -696,11 +696,11 @@
                             <span class="reg-summary-item-value">UNWAHAS Stadium</span>
                         </div>
                         <div class="reg-summary-sep"></div>
-                        <div class="reg-summary-item">
+                        {{-- <div class="reg-summary-item">
                             <span class="reg-summary-item-label">Entry Fee</span>
                             <span class="reg-summary-item-value"
                                 style="color: var(--forest-light); font-weight: 600;">Rp 50.000</span>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="agree-row">

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Mail\RegistrationSuccessMail;
-use App\Models\Employee;
 use App\Models\Participant;
 use App\Models\ShirtSize;
+use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationSuccessMail;
+use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
@@ -39,7 +39,7 @@ class RegisterController extends Controller
                 'required|string|max:255',
 
             'email' =>
-                'required|email|unique:participants,email',
+                'required|email',
 
             'phone' =>
                 'required',
@@ -48,7 +48,7 @@ class RegisterController extends Controller
                 'required',
 
             'birth_date' =>
-                'required|date',
+                'required',
 
             'city' =>
                 'required',
@@ -64,33 +64,9 @@ class RegisterController extends Controller
 
         ]);
 
-        if (
-            $request->participant_type ===
-            'employee'
-        ) {
+        $last = Participant::latest('id')->first();
 
-            $request->validate([
-                'npp' => 'required'
-            ]);
-        }
-
-        if (
-            $request->participant_type ===
-            'general'
-        ) {
-
-            $request->validate([
-                'payment_proof' =>
-                    'required|file|mimes:jpg,jpeg,png,pdf|max:5120'
-            ]);
-        }
-
-        $last =
-            Participant::latest('id')
-            ->first();
-
-        $nextNumber =
-            $last
+        $nextNumber = $last
             ? $last->id + 1
             : 1;
 
@@ -103,24 +79,22 @@ class RegisterController extends Controller
                 STR_PAD_LEFT
             );
 
-        $paymentStatus = 'pending';
-        $paidAt = null;
-
         $npp = null;
         $workUnit = null;
 
-        $paymentProof = null;
-
         if (
-            $request->participant_type ===
-            'employee'
+            $request->participant_type
+            === 'employee'
         ) {
 
-            $employee =
-                Employee::where(
-                    'npp',
-                    $request->npp
-                )->first();
+            $request->validate([
+                'npp' => 'required'
+            ]);
+
+            $employee = Employee::where(
+                'npp',
+                $request->npp
+            )->first();
 
             if (!$employee) {
 
@@ -148,34 +122,10 @@ class RegisterController extends Controller
                     ]);
             }
 
-            $paymentStatus = 'paid';
-
-            $paidAt = now();
-
-            $npp =
-                $employee->npp;
+            $npp = $employee->npp;
 
             $workUnit =
-                $employee->employee_type;
-        }
-        else {
-
-            if (
-                $request->hasFile(
-                    'payment_proof'
-                )
-            ) {
-
-                $paymentProof =
-                    $request
-                    ->file(
-                        'payment_proof'
-                    )
-                    ->store(
-                        'payment-proofs',
-                        'public'
-                    );
-            }
+                $request->work_unit;
         }
 
         $participant =
@@ -214,6 +164,15 @@ class RegisterController extends Controller
                 'medical_notes' =>
                     $request->medical_notes,
 
+                'portal_token' =>
+                    Str::uuid(),
+
+                'agreed_terms' =>
+                    true,
+
+                'agreed_media' =>
+                    true,
+
                 'participant_type' =>
                     $request->participant_type,
 
@@ -223,23 +182,12 @@ class RegisterController extends Controller
                 'work_unit' =>
                     $workUnit,
 
-                'payment_proof' =>
-                    $paymentProof,
-
+                // GRATIS UNTUK SEMUA
                 'payment_status' =>
-                    $paymentStatus,
+                    'paid',
 
                 'paid_at' =>
-                    $paidAt,
-
-                'portal_token' =>
-                    Str::uuid(),
-
-                'agreed_terms' =>
-                    true,
-
-                'agreed_media' =>
-                    true,
+                    now(),
             ]);
 
         Mail::to(
@@ -258,12 +206,10 @@ class RegisterController extends Controller
 
     public function dashboard($token)
     {
-        $participant =
-            Participant::where(
-                'portal_token',
-                $token
-            )
-            ->firstOrFail();
+        $participant = Participant::where(
+            'portal_token',
+            $token
+        )->firstOrFail();
 
         return view(
             'frontend.participant-dashboard',
@@ -271,3 +217,4 @@ class RegisterController extends Controller
         );
     }
 }
+?>

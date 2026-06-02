@@ -409,7 +409,7 @@
         </div>
       </div>
 
-      {{-- ── Revenue hero card ── --}}
+      ── Revenue hero card ──
       @php
         $ticketPrice      = 50000;
         $totalParticipants   = \App\Models\Participant::count();
@@ -432,7 +432,7 @@
         $generalPct = $totalParticipants > 0 ? round($generalCount / $totalParticipants * 100) : 0;
       @endphp
 
-      <div class="revenue-card">
+      {{-- <div class="revenue-card">
         <div class="revenue-left">
           <div class="revenue-label">Total Revenue Terkumpul</div>
           <div class="revenue-amount">Rp {{ number_format($revenue, 0, ',', '.') }}</div>
@@ -458,7 +458,7 @@
             <div class="rev-mini-note">jika semua terverif</div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       {{-- ── Stat cards ── --}}
       <div class="section-label">Statistik Peserta</div>
@@ -475,7 +475,7 @@
           <div class="stat-note">semua peserta</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['pay' => 'paid']) }}" class="stat-card">
+        {{-- <a href="{{ route('admin.participants.index', ['pay' => 'paid']) }}" class="stat-card">
           <div class="stat-icon-wrap icon-green">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -495,7 +495,7 @@
           <div class="stat-label">Pending</div>
           <div class="stat-num">{{ $pendingParticipants }}</div>
           <div class="stat-note">menunggu verifikasi</div>
-        </a>
+        </a> --}}
 
         <a href="{{ route('admin.participants.index', ['checkin' => '1']) }}" class="stat-card">
           <div class="stat-icon-wrap icon-blue">
@@ -506,7 +506,7 @@
           </div>
           <div class="stat-label">Check-in</div>
           <div class="stat-num">{{ $checkinParticipants }}</div>
-          <div class="stat-note">{{ $checkinPct }}% dari lunas</div>
+          {{-- <div class="stat-note">{{ $checkinPct }}% dari lunas</div> --}}
         </a>
 
         <a href="{{ route('admin.participants.index', ['type' => 'employee']) }}" class="stat-card">
@@ -517,7 +517,7 @@
           </div>
           <div class="stat-label">Pegawai</div>
           <div class="stat-num">{{ $pegawaiCount }}</div>
-          <div class="stat-note">UNWAHAS · gratis</div>
+          {{-- <div class="stat-note">UNWAHAS · gratis</div> --}}
         </a>
 
         <a href="{{ route('admin.participants.index', ['type' => 'general']) }}" class="stat-card">
@@ -528,7 +528,7 @@
           </div>
           <div class="stat-label">Umum</div>
           <div class="stat-num">{{ $generalCount }}</div>
-          <div class="stat-note">Rp 50.000 / orang</div>
+          {{-- <div class="stat-note">Rp 50.000 / orang</div> --}}
         </a>
 
       </div>
@@ -601,7 +601,7 @@
           </div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['pay' => 'unpaid']) }}" class="quick-card">
+        {{-- <a href="{{ route('admin.participants.index', ['pay' => 'unpaid']) }}" class="quick-card">
           <div class="quick-icon" style="background:#FEF3E8; color:#92510A;">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -616,7 +616,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </div>
-        </a>
+        </a> --}}
 
         <a href="{{ route('admin.scanner') }}" class="quick-card">
           <div class="quick-icon" style="background:#E6F1FB; color:#0C447C;">
