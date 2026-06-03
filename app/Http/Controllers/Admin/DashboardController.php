@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegistrationSuccessMail;
 use App\Models\Participant;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
+
+
     public function index()
 {
     $totalParticipants = Participant::count();
@@ -44,4 +48,15 @@ class DashboardController extends Controller
         )
     );
 }
+public function resendEmail(Participant $participant)
+    {
+        try {
+            Mail::to($participant->email)->send(new RegistrationSuccessMail($participant));
+
+            return back()->with('success', "Email berhasil dikirim ulang ke {$participant->email}");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email: ' . $e->getMessage());
+        }
+    }
+
 }

@@ -808,6 +808,7 @@
                 <th>Check-in</th>
                 <th>Kota</th>
                 <th>Ukuran Baju</th>
+                <th>Gender</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -883,6 +884,17 @@
                     <span class="badge badge-umum"
                       style="font-size:11px">{{ $participant->shirtSize->name ?? '—' }}</span>
                   </td>
+                  <td>
+                    @if(strtolower($participant->gender) === 'male')
+                      <span class="badge" style="background:#E6F1FB; border:1px solid #85B7EB; color:#0C447C">♂
+                        Laki-laki</span>
+                    @elseif(strtolower($participant->gender) === 'female')
+                      <span class="badge" style="background:#FBEAF0; border:1px solid #ED93B1; color:#72243E">♀
+                        Perempuan</span>
+                    @else
+                      <span style="color:var(--text-muted)">—</span>
+                    @endif
+                  </td>
 
                   <td>
                     <div class="action-wrap">
@@ -917,7 +929,7 @@
                 </tr>
               @empty
                 <tr>
-                  <td colspan="9">
+                  <td colspan="10">
                     <div class="empty-state">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor">

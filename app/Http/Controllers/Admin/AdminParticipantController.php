@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticipantsExport;
 use App\Http\Controllers\Controller;
+use App\Mail\PaymentVerifiedMail;
+use App\Mail\RegistrationSuccessMail;
 use App\Models\Participant;
 use Illuminate\Http\Request;
-use App\Mail\PaymentVerifiedMail;
 use Illuminate\Support\Facades\Mail;
-use App\Exports\ParticipantsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminParticipantController extends Controller
@@ -20,8 +21,8 @@ class AdminParticipantController extends Controller
         if ($search = $request->get('search')) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('registration_code', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                    ->orWhere('registration_code', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
@@ -144,5 +145,15 @@ class AdminParticipantController extends Controller
         $filename = 'peserta-yoga-2026_' . now()->format('Ymd_His') . '.xlsx';
 
         return Excel::download(new ParticipantsExport($request), $filename);
+    }
+    public function resendEmail(Participant $participant)
+    {
+        try {
+            Mail::to($participant->email)->send(new RegistrationSuccessMail($participant));
+
+            return back()->with('success', "Email berhasil dikirim ulang ke {$participant->email}");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email: ' . $e->getMessage());
+        }
     }
 }
