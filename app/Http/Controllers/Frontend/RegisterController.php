@@ -19,8 +19,8 @@ class RegisterController extends Controller
             'is_active',
             true
         )
-            ->orderBy('sort_order')
-            ->get();
+        ->orderBy('sort_order')
+        ->get();
 
         return view(
             'frontend.register',
@@ -33,49 +33,35 @@ class RegisterController extends Controller
         $request->validate([
 
             'participant_type' =>
-            'required|in:general,employee',
+                'required|in:general,employee',
 
             'name' =>
-            'required|string|max:255',
+                'required|string|max:255',
 
             'email' =>
-            'required|email|unique:participants,email',
+                'required|email|unique',
 
             'phone' =>
-            'required',
+                'required',
 
             'gender' =>
-            'required',
+                'required',
 
             'birth_date' =>
-            'required',
+                'required',
 
             'city' =>
-            'required',
+                'required',
 
             'shirt_size_id' =>
-            'required',
+                'required',
 
             'emergency_contact_name' =>
-            'required',
+                'required',
 
             'emergency_contact_phone' =>
-            'required',
+                'required',
 
-        ], [
-            // Pesan error custom Bahasa Indonesia
-            'email.unique' => 'Email ini sudah terdaftar. Setiap peserta hanya boleh mendaftar satu kali.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'name.required' => 'Nama wajib diisi.',
-            'participant_type.required' => 'Jenis peserta wajib dipilih.',
-            'phone.required' => 'Nomor telepon wajib diisi.',
-            'gender.required' => 'Jenis kelamin wajib dipilih.',
-            'birth_date.required' => 'Tanggal lahir wajib diisi.',
-            'city.required' => 'Kota wajib diisi.',
-            'shirt_size_id.required' => 'Ukuran kaos wajib dipilih.',
-            'emergency_contact_name.required' => 'Nama kontak darurat wajib diisi.',
-            'emergency_contact_phone.required' => 'Nomor kontak darurat wajib diisi.',
         ]);
 
         $last = Participant::latest('id')->first();
@@ -146,62 +132,62 @@ class RegisterController extends Controller
             Participant::create([
 
                 'registration_code' =>
-                $registrationCode,
+                    $registrationCode,
 
                 'name' =>
-                $request->name,
+                    $request->name,
 
                 'email' =>
-                $request->email,
+                    $request->email,
 
                 'phone' =>
-                $request->phone,
+                    $request->phone,
 
                 'gender' =>
-                $request->gender,
+                    $request->gender,
 
                 'birth_date' =>
-                $request->birth_date,
+                    $request->birth_date,
 
                 'city' =>
-                $request->city,
+                    $request->city,
 
                 'shirt_size_id' =>
-                $request->shirt_size_id,
+                    $request->shirt_size_id,
 
                 'emergency_contact_name' =>
-                $request->emergency_contact_name,
+                    $request->emergency_contact_name,
 
                 'emergency_contact_phone' =>
-                $request->emergency_contact_phone,
+                    $request->emergency_contact_phone,
 
                 'medical_notes' =>
-                $request->medical_notes,
+                    $request->medical_notes,
 
                 'portal_token' =>
-                Str::uuid(),
+                    Str::uuid(),
 
                 'agreed_terms' =>
-                true,
+                    true,
 
                 'agreed_media' =>
-                true,
+                    true,
 
                 'participant_type' =>
-                $request->participant_type,
+                    $request->participant_type,
 
                 'npp' =>
-                $npp,
+                    $npp,
 
                 'work_unit' =>
-                $workUnit,
+                    $workUnit,
 
                 // GRATIS UNTUK SEMUA
                 'payment_status' =>
-                'paid',
+                    'paid',
 
                 'paid_at' =>
-                now(),
+                    now(),
             ]);
 
         Mail::to(
@@ -214,7 +200,7 @@ class RegisterController extends Controller
 
         return redirect(
             '/participant/' .
-                $participant->portal_token
+            $participant->portal_token
         );
     }
 
@@ -231,3 +217,4 @@ class RegisterController extends Controller
         );
     }
 }
+?>
