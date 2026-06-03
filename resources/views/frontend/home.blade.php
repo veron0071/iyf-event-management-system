@@ -935,7 +935,7 @@
   <!-- ── LOGO BAR ── -->
   <div class="logo-bar">
     <div class="logo-bar-item">
-      <img src="{{ asset('images/Lambang_Kota_Semarang.png') }}" alt="Kota Semarang">
+      <img src="{{ asset('images/jateng.png') }}" alt="Kota Semarang">
     </div>
     <div class="logo-bar-item">
       <img src="{{ asset('images/jncc2.png') }}" alt="JNICC Jakarta">
