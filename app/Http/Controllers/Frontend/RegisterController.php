@@ -38,8 +38,7 @@ class RegisterController extends Controller
             'name' =>
                 'required|string|max:255',
 
-            'email' =>
-                'required|email|unique',
+           'email' => 'required|email|unique:participants,email',
 
             'phone' =>
                 'required',
@@ -62,7 +61,30 @@ class RegisterController extends Controller
             'emergency_contact_phone' =>
                 'required',
 
-        ]);
+        ],
+        
+        [
+            'participant_type.required' =>
+                'Tipe peserta harus dipilih.',
+
+            'participant_type.in' =>
+                'Tipe peserta tidak valid.',
+
+            'name.required' =>
+                'Nama lengkap harus diisi.',
+
+            'email.required' =>
+                'Email harus diisi.',
+
+            'email.email' =>
+                'Format email tidak valid.',
+
+            'email.unique' =>
+                'Email sudah terdaftar.',
+
+            'phone.required' =>
+                'Nomor telepon harus diisi.',]);
+
 
         $last = Participant::latest('id')->first();
 
