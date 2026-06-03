@@ -405,7 +405,7 @@
         {{-- Header --}}
         <div class="reg-header">
             <div class="reg-header-badge">
-                🧘 International Yoga Festival 2026
+                🧘 International Day of Yoga  2026
             </div>
             <h1 class="reg-header-title">
                 Event <em>Registration</em>
@@ -683,7 +683,7 @@
                     <div class="reg-summary">
                         <div class="reg-summary-item">
                             <span class="reg-summary-item-label">Event</span>
-                            <span class="reg-summary-item-value">International Yoga Festival</span>
+                            <span class="reg-summary-item-value">International Day of Yoga 2026</span>
                         </div>
                         <div class="reg-summary-sep"></div>
                         <div class="reg-summary-item">

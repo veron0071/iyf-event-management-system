@@ -332,7 +332,7 @@
         <div class="ticket-logo">🧘</div>
         <div class="ticket-header-text">
           <div class="ticket-event-name">Universitas Wahid Hasyim Semarang</div>
-          <div class="ticket-event-title">International Yoga Festival 2026</div>
+          <div class="ticket-event-title">International Day of Yoga 2026</div>
           <div class="ticket-event-date">Saturday, 20 June 2026 · 06.30 WIB · UNWAHAS Stadium</div>
         </div>
       </div>
