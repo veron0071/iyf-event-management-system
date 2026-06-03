@@ -1514,7 +1514,7 @@
   </section>
 
   <!-- ── PARTNERS ── -->
-  <section class="section partners-bg" style="padding-top:0;">
+  {{-- <section class="section partners-bg" style="padding-top:0;">
     <div class="section-inner">
       <div class="tc reveal">
         <div class="section-eyebrow">
@@ -1526,10 +1526,10 @@
       </div>
       <div class="partners-row reveal">
         <div class="partner-box">
-          <img src="{{ asset('images/kota-semarang.png') }}" alt="Kota Semarang">
+          <img src="{{ asset('images/jateng.png') }}" alt="jateng">
         </div>
         <div class="partner-box">
-          <img src="{{ asset('images/jncc.jpeg') }}" alt="JNICC Jakarta">
+          <img src="{{ asset('images/jncc2.png') }}" alt="JNICC Jakarta">
         </div>
         <div class="partner-box">
           <img src="{{ asset('images/embassy-india.png') }}" alt="Embassy of India">
@@ -1545,19 +1545,19 @@
         </div>
         <div class="partner-box">
           <img src="{{ asset('images/yoga365.png') }}" alt="Yoga 365">
-        </div>
+        </div> 
         <div class="partner-box">
           <img src="{{ asset('images/kemenpar.png') }}" alt="Kementerian Pariwisata RI">
         </div>
         <div class="partner-box">
-          <img src="{{ asset('images/wonderful-indonesia.png') }}" alt="Wonderful Indonesia">
+          <img src="{{ asset('images/Wonderful.png') }}" alt="Wonderful Indonesia">
         </div>
         <div class="partner-box">
-          <img src="{{ asset('images/indonesia-mitra.png') }}" alt="Indonesia – Mitra Selamanya">
+          <img src="{{ asset('images/ind.png') }}" alt="Indonesia – Mitra Selamanya">
         </div>
       </div>
     </div>
-  </section>
+  </section>  --}}
 
   <!-- ── CTA ── -->
   <section class="cta-sec">
