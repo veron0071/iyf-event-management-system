@@ -207,7 +207,7 @@
   <div class="scanner-wrap">
 
     <div class="scanner-header">
-      <p class="scanner-eyebrow">International Yoga Festival 2026</p>
+      <p class="scanner-eyebrow">International Day of Yoga 2026</p>
       <h1 class="scanner-title">QR Check-In Scanner</h1>
       <p class="scanner-sub">Arahkan kamera ke QR code peserta</p>
     </div>

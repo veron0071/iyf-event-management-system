@@ -4,7 +4,13 @@
     rel="stylesheet">
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --gold: #C9A84C;
@@ -99,8 +105,16 @@
       white-space: nowrap;
       transition: background 0.15s;
     }
-    .btn-export:hover { background: var(--forest-mid); }
-    .btn-export svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .btn-export:hover {
+      background: var(--forest-mid);
+    }
+
+    .btn-export svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
 
     /* ─── Flash messages ─────────────────────── */
     .flash {
@@ -114,12 +128,18 @@
       margin-bottom: 20px;
       border: 1px solid;
     }
+
     .flash-success {
       background: var(--paid-bg);
       border-color: var(--paid-border);
       color: var(--paid-text);
     }
-    .flash svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .flash svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
 
     /* ─── Stat cards ─────────────────────────── */
     .stats-row {
@@ -139,7 +159,11 @@
       transition: border-color 0.15s, background 0.15s;
       display: block;
     }
-    .stat-card:hover { border-color: var(--forest-light); }
+
+    .stat-card:hover {
+      border-color: var(--forest-light);
+    }
+
     .stat-card.active {
       background: var(--forest);
       border-color: var(--forest);
@@ -155,9 +179,20 @@
       justify-content: center;
       margin-bottom: 10px;
     }
-    .stat-card.active .stat-icon { background: rgba(255,255,255,0.15); }
-    .stat-icon svg { width: 15px; height: 15px; color: var(--forest-light); }
-    .stat-card.active .stat-icon svg { color: #fff; }
+
+    .stat-card.active .stat-icon {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-icon svg {
+      width: 15px;
+      height: 15px;
+      color: var(--forest-light);
+    }
+
+    .stat-card.active .stat-icon svg {
+      color: #fff;
+    }
 
     .stat-label {
       font-size: 10px;
@@ -167,7 +202,10 @@
       color: var(--text-muted);
       margin-bottom: 4px;
     }
-    .stat-card.active .stat-label { color: rgba(255,255,255,0.6); }
+
+    .stat-card.active .stat-label {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
     .stat-num {
       font-family: 'Playfair Display', serif;
@@ -176,7 +214,10 @@
       color: var(--text-dark);
       line-height: 1;
     }
-    .stat-card.active .stat-num { color: #fff; }
+
+    .stat-card.active .stat-num {
+      color: #fff;
+    }
 
     /* ─── Filter bar ─────────────────────────── */
     .filter-bar {
@@ -196,6 +237,7 @@
       min-width: 200px;
       position: relative;
     }
+
     .search-wrap svg {
       position: absolute;
       left: 12px;
@@ -206,6 +248,7 @@
       color: var(--text-muted);
       pointer-events: none;
     }
+
     .search-wrap input {
       width: 100%;
       padding: 9px 14px 9px 36px;
@@ -218,8 +261,14 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .search-wrap input:focus { border-color: var(--forest-light); }
-    .search-wrap input::placeholder { color: var(--text-muted); }
+
+    .search-wrap input:focus {
+      border-color: var(--forest-light);
+    }
+
+    .search-wrap input::placeholder {
+      color: var(--text-muted);
+    }
 
     .filter-select {
       padding: 9px 14px;
@@ -239,7 +288,10 @@
       background-repeat: no-repeat;
       background-position: right 10px center;
     }
-    .filter-select:focus { border-color: var(--forest-light); }
+
+    .filter-select:focus {
+      border-color: var(--forest-light);
+    }
 
     .btn-filter {
       padding: 9px 20px;
@@ -253,7 +305,10 @@
       cursor: pointer;
       transition: background 0.15s;
     }
-    .btn-filter:hover { background: var(--forest-mid); }
+
+    .btn-filter:hover {
+      background: var(--forest-mid);
+    }
 
     .btn-reset {
       padding: 9px 16px;
@@ -267,7 +322,11 @@
       text-decoration: none;
       transition: border-color 0.15s, color 0.15s;
     }
-    .btn-reset:hover { border-color: var(--text-muted); color: var(--text-dark); }
+
+    .btn-reset:hover {
+      border-color: var(--text-muted);
+      color: var(--text-dark);
+    }
 
     /* ─── Table ──────────────────────────────── */
     .table-wrap {
@@ -277,7 +336,9 @@
       overflow: hidden;
     }
 
-    .table-scroll { overflow-x: auto; }
+    .table-scroll {
+      overflow-x: auto;
+    }
 
     table {
       width: 100%;
@@ -309,8 +370,13 @@
       vertical-align: middle;
     }
 
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover td { background: #FDFBF6; }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: #FDFBF6;
+    }
 
     .reg-code {
       font-family: 'Courier New', monospace;
@@ -408,21 +474,33 @@
       text-decoration: none;
       transition: background 0.12s;
     }
-    .btn-action svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .btn-action svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
 
     .btn-detail {
       background: transparent;
       border-color: var(--border);
       color: var(--text-mid);
     }
-    .btn-detail:hover { background: var(--cream); border-color: var(--text-muted); }
+
+    .btn-detail:hover {
+      background: var(--cream);
+      border-color: var(--text-muted);
+    }
 
     .btn-verify {
       background: var(--paid-bg);
       border-color: var(--paid-border);
       color: var(--paid-text);
     }
-    .btn-verify:hover { background: #D6EFE0; }
+
+    .btn-verify:hover {
+      background: #D6EFE0;
+    }
 
     /* ─── Empty state ────────────────────────── */
     .empty-state {
@@ -430,6 +508,7 @@
       padding: 48px 24px;
       color: var(--text-muted);
     }
+
     .empty-state svg {
       width: 40px;
       height: 40px;
@@ -437,7 +516,10 @@
       display: block;
       color: var(--border);
     }
-    .empty-state p { font-size: 14px; }
+
+    .empty-state p {
+      font-size: 14px;
+    }
 
     /* ─── Table footer / pagination ──────────── */
     .table-footer {
@@ -462,9 +544,18 @@
     }
 
     /* Override Laravel default pagination */
-    .pagination-links nav { display: contents; }
-    .pagination-links .flex { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
-    .pagination-links span[aria-current="page"] > span,
+    .pagination-links nav {
+      display: contents;
+    }
+
+    .pagination-links .flex {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pagination-links span[aria-current="page"]>span,
     .pagination-links a {
       display: inline-flex;
       align-items: center;
@@ -481,14 +572,19 @@
       background: var(--white);
       transition: background 0.12s;
     }
-    .pagination-links span[aria-current="page"] > span {
+
+    .pagination-links span[aria-current="page"]>span {
       background: var(--forest);
       border-color: var(--forest);
       color: #fff;
       font-weight: 500;
     }
-    .pagination-links a:hover { background: var(--cream); }
-    .pagination-links span[aria-disabled="true"] > span {
+
+    .pagination-links a:hover {
+      background: var(--cream);
+    }
+
+    .pagination-links span[aria-disabled="true"]>span {
       opacity: 0.4;
       display: inline-flex;
       align-items: center;
@@ -502,15 +598,36 @@
       color: var(--text-muted);
       background: var(--white);
     }
-    .pagination-links svg { display: none; }
-    .pagination-links [rel="prev"]::before { content: "‹"; }
-    .pagination-links [rel="next"]::after  { content: "›"; }
+
+    .pagination-links svg {
+      display: none;
+    }
+
+    .pagination-links [rel="prev"]::before {
+      content: "‹";
+    }
+
+    .pagination-links [rel="next"]::after {
+      content: "›";
+    }
 
     @media (max-width: 640px) {
-      .admin-page { padding: 24px 16px 60px; }
-      .page-title { font-size: 22px; }
-      .stats-row { grid-template-columns: repeat(3, 1fr); }
-      .table-footer { flex-direction: column; align-items: flex-start; }
+      .admin-page {
+        padding: 24px 16px 60px;
+      }
+
+      .page-title {
+        font-size: 22px;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .table-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 
@@ -520,13 +637,17 @@
       {{-- ── Page header ──────────────────────── --}}
       <div class="page-header">
         <div class="page-header-left">
-          <div class="page-eyebrow">International Yoga Festival 2026</div>
+          <div class="page-eyebrow">International
+            Day of
+            Yoga 2026</div>
           <h1 class="page-title">Daftar <em>Peserta</em></h1>
           <p class="page-subtitle">Kelola pendaftaran, verifikasi pembayaran & check-in</p>
         </div>
         <a href="{{ route('admin.participants.export') }}" class="btn-export">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
           </svg>
           Export Excel
         </a>
@@ -536,7 +657,8 @@
       @if(session('success'))
         <div class="flash flash-success">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>
           {{ session('success') }}
         </div>
@@ -544,71 +666,90 @@
 
       {{-- ── Stat cards ────────────────────────── --}}
       @php
-        $countTotal   = \App\Models\Participant::count();
-        $countPaid    = \App\Models\Participant::where('payment_status', 'paid')->count();
-        $countUnpaid  = \App\Models\Participant::where('payment_status', 'unpaid')->count();
+        $countTotal = \App\Models\Participant::count();
+        $countPaid = \App\Models\Participant::where('payment_status', 'paid')->count();
+        $countUnpaid = \App\Models\Participant::where('payment_status', 'unpaid')->count();
         $countPegawai = \App\Models\Participant::where('participant_type', 'employee')->count();
-        $countUmum    = \App\Models\Participant::where('participant_type', 'general')->count();
+        $countUmum = \App\Models\Participant::where('participant_type', 'general')->count();
         $countCheckin = \App\Models\Participant::where('checkin_status', true)->count();
       @endphp
 
       <div class="stats-row">
 
-        <a href="{{ route('admin.participants.index') }}" class="stat-card {{ !request()->hasAny(['pay','type','checkin']) ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index') }}"
+          class="stat-card {{ !request()->hasAny(['pay', 'type', 'checkin']) ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
             </svg>
           </div>
           <div class="stat-label">Total</div>
           <div class="stat-num">{{ $countTotal }}</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['pay' => 'paid']) }}" class="stat-card {{ request('pay') === 'paid' ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index', ['pay' => 'paid']) }}"
+          class="stat-card {{ request('pay') === 'paid' ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
           <div class="stat-label">Lunas</div>
           <div class="stat-num">{{ $countPaid }}</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['pay' => 'unpaid']) }}" class="stat-card {{ request('pay') === 'unpaid' ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index', ['pay' => 'unpaid']) }}"
+          class="stat-card {{ request('pay') === 'unpaid' ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
           <div class="stat-label">Belum Verif.</div>
           <div class="stat-num">{{ $countUnpaid }}</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['type' => 'employee']) }}" class="stat-card {{ request('type') === 'employee' ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index', ['type' => 'employee']) }}"
+          class="stat-card {{ request('type') === 'employee' ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
           </div>
           <div class="stat-label">Pegawai</div>
           <div class="stat-num">{{ $countPegawai }}</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['type' => 'general']) }}" class="stat-card {{ request('type') === 'general' ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index', ['type' => 'general']) }}"
+          class="stat-card {{ request('type') === 'general' ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
             </svg>
           </div>
           <div class="stat-label">Umum</div>
           <div class="stat-num">{{ $countUmum }}</div>
         </a>
 
-        <a href="{{ route('admin.participants.index', ['checkin' => '1']) }}" class="stat-card {{ request('checkin') === '1' ? 'active' : '' }}">
+        <a href="{{ route('admin.participants.index', ['checkin' => '1']) }}"
+          class="stat-card {{ request('checkin') === '1' ? 'active' : '' }}">
           <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
             </svg>
           </div>
           <div class="stat-label">Check-in</div>
@@ -621,26 +762,24 @@
       <div class="filter-bar">
         <form method="GET" action="{{ route('admin.participants.index') }}" style="display:contents">
           <div class="search-wrap">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
-            <input
-              type="text"
-              name="search"
-              value="{{ request('search') }}"
-              placeholder="Cari nama, kode, atau email..."
-              autocomplete="off">
+            <input type="text" name="search" value="{{ request('search') }}"
+              placeholder="Cari nama, kode, atau email..." autocomplete="off">
           </div>
 
           <select name="type" class="filter-select">
             <option value="">Semua tipe</option>
             <option value="employee" {{ request('type') === 'employee' ? 'selected' : '' }}>Pegawai</option>
-            <option value="general"    {{ request('type') === 'general'    ? 'selected' : '' }}>Umum</option>
+            <option value="general" {{ request('type') === 'general' ? 'selected' : '' }}>Umum</option>
           </select>
 
           <select name="pay" class="filter-select">
             <option value="">Semua status bayar</option>
-            <option value="paid"   {{ request('pay') === 'paid'   ? 'selected' : '' }}>Lunas</option>
+            <option value="paid" {{ request('pay') === 'paid' ? 'selected' : '' }}>Lunas</option>
             <option value="unpaid" {{ request('pay') === 'unpaid' ? 'selected' : '' }}>Belum verifikasi</option>
           </select>
 
@@ -674,108 +813,121 @@
             </thead>
             <tbody>
               @forelse($participants as $participant)
-              <tr>
-                <td style="color: var(--text-muted); font-size:12px">
-                  {{ $participants->firstItem() + $loop->index }}
-                </td>
+                <tr>
+                  <td style="color: var(--text-muted); font-size:12px">
+                    {{ $participants->firstItem() + $loop->index }}
+                  </td>
 
-                <td>
-                  <span class="reg-code">{{ $participant->registration_code }}</span>
-                </td>
+                  <td>
+                    <span class="reg-code">{{ $participant->registration_code }}</span>
+                  </td>
 
-                <td>
-                  <div class="participant-name">{{ $participant->name }}</div>
-                  <div class="participant-email">{{ $participant->email }}</div>
-                </td>
+                  <td>
+                    <div class="participant-name">{{ $participant->name }}</div>
+                    <div class="participant-email">{{ $participant->email }}</div>
+                  </td>
 
-                <td>
-                  @if($participant->participant_type === 'employee')
-                    <span class="badge badge-pegawai">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="flex-shrink:0">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                      </svg>
-                      Pegawai
-                    </span>
-                  @else
-                    <span class="badge badge-umum">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="flex-shrink:0">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                      </svg>
-                      Umum
-                    </span>
-                  @endif
-                </td>
+                  <td>
+                    @if($participant->participant_type === 'employee')
+                      <span class="badge badge-pegawai">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24"
+                          stroke-width="2" stroke="currentColor" style="flex-shrink:0">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                        Pegawai
+                      </span>
+                    @else
+                      <span class="badge badge-umum">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24"
+                          stroke-width="2" stroke="currentColor" style="flex-shrink:0">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                        Umum
+                      </span>
+                    @endif
+                  </td>
 
-                <td>
-                  @if(strtolower($participant->payment_status) === 'paid')
-                    <span class="badge badge-paid">
-                      <span class="badge-dot"></span>
-                      Lunas
-                    </span>
-                  @else
-                    <span class="badge badge-unpaid">
-                      <span class="badge-dot"></span>
-                      Menunggu
-                    </span>
-                  @endif
-                </td>
+                  <td>
+                    @if(strtolower($participant->payment_status) === 'paid')
+                      <span class="badge badge-paid">
+                        <span class="badge-dot"></span>
+                        Lunas
+                      </span>
+                    @else
+                      <span class="badge badge-unpaid">
+                        <span class="badge-dot"></span>
+                        Menunggu
+                      </span>
+                    @endif
+                  </td>
 
-                <td>
-                  @if($participant->checkin_status)
-                    <span class="badge badge-checkin">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                      </svg>
-                      Hadir
-                    </span>
-                  @else
-                    <span class="badge badge-notcheckin">— Belum</span>
-                  @endif
-                </td>
+                  <td>
+                    @if($participant->checkin_status)
+                      <span class="badge badge-checkin">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 24 24"
+                          stroke-width="2.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                        Hadir
+                      </span>
+                    @else
+                      <span class="badge badge-notcheckin">— Belum</span>
+                    @endif
+                  </td>
 
-                <td style="color: var(--text-mid); font-size:13px">{{ $participant->city ?? '—' }}</td>
+                  <td style="color: var(--text-mid); font-size:13px">{{ $participant->city ?? '—' }}</td>
 
-                <td>
-                  <span class="badge badge-umum" style="font-size:11px">{{ $participant->shirtSize->name ?? '—' }}</span>
-                </td>
+                  <td>
+                    <span class="badge badge-umum"
+                      style="font-size:11px">{{ $participant->shirtSize->name ?? '—' }}</span>
+                  </td>
 
-                <td>
-                  <div class="action-wrap">
-                    <a href="{{ route('admin.participants.show', $participant) }}" class="btn-action btn-detail">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                      </svg>
-                      Detail
-                    </a>
+                  <td>
+                    <div class="action-wrap">
+                      <a href="{{ route('admin.participants.show', $participant) }}" class="btn-action btn-detail">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        Detail
+                      </a>
 
-                    {{-- @if(strtolower($participant->payment_status) !== 'paid')
-                      <form action="{{ route('admin.participants.verify', $participant) }}" method="POST" style="display:contents">
+                      {{-- @if(strtolower($participant->payment_status) !== 'paid')
+                      <form action="{{ route('admin.participants.verify', $participant) }}" method="POST"
+                        style="display:contents">
                         @csrf
                         @method('PATCH')
                         <button type="submit" class="btn-action btn-verify"
                           onclick="return confirm('Verifikasi pembayaran {{ $participant->name }}?')">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                           </svg>
                           Verifikasi
                         </button>
                       </form>
-                    @endif --}}
-                  </div>
-                </td>
-              </tr>
+                      @endif --}}
+                    </div>
+                  </td>
+                </tr>
               @empty
-              <tr>
-                <td colspan="9">
-                  <div class="empty-state">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0 0 12.016 15a4.486 4.486 0 0 0-3.198 1.318M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
-                    </svg>
-                    <p>Tidak ada peserta yang sesuai filter.</p>
-                  </div>
-                </td>
-              </tr>
+                <tr>
+                  <td colspan="9">
+                    <div class="empty-state">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15.182 16.318A4.486 4.486 0 0 0 12.016 15a4.486 4.486 0 0 0-3.198 1.318M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                      </svg>
+                      <p>Tidak ada peserta yang sesuai filter.</p>
+                    </div>
+                  </td>
+                </tr>
               @endforelse
             </tbody>
           </table>

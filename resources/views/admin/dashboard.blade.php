@@ -400,7 +400,7 @@
       <div class="dash-header">
         <div>
           <div class="dash-eyebrow">Universitas Wahid Hasyim Semarang</div>
-          <h1 class="dash-title">International <em>Yoga</em> Festival</h1>
+          <h1 class="dash-title">International Day <em>of</em> Yoga</h1>
           <p class="dash-subtitle">Administration Dashboard · 20 Juni 2026</p>
         </div>
         <div class="dash-date">
