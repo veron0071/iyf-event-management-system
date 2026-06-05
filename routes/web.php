@@ -17,8 +17,8 @@ use App\Http\Controllers\Admin\AdminParticipantController;
 
 Route::get('/', HomeController::class);
 
-Route::get('/register-event', [RegisterController::class, 'create']);
-Route::post('/register-event', [RegisterController::class, 'store']);
+// Route::get('/register-event', [RegisterController::class, 'create']);
+// Route::post('/register-event', [RegisterController::class, 'store']);
 
 Route::get('/participant/{token}', [RegisterController::class, 'dashboard']);
 

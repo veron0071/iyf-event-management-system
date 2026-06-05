@@ -1940,7 +1940,7 @@
       <a href="#schedule">Schedule</a>
       <a href="#guest">Guest</a>
       <a href="#contact">Contact</a>
-      <a href="/register-event" class="nav-cta">Register Now</a>
+      <span class="nav-cta" style="opacity:0.5;cursor:not-allowed;pointer-events:none;">Closed</span>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -1951,7 +1951,7 @@
     <a href="#schedule" class="drawer-link">Schedule</a>
     <a href="#guest" class="drawer-link">Guest</a>
     <a href="#contact" class="drawer-link">Contact</a>
-    <a href="/register-event" class="drawer-cta">Register Now →</a>
+    <span class="nav-cta" style="opacity:0.5;cursor:not-allowed;pointer-events:none;">Closed</span>
   </div>
 
   <!-- ── LOGO BAR ── -->
@@ -2081,7 +2081,9 @@
         </div>
 
         <div class="hero-btns">
-          <a href="/register-event" class="btn-saffron">Register Now →</a>
+          <span class="btn-saffron" style="opacity:0.5;cursor:not-allowed;pointer-events:none;">
+            🔒 Pendaftaran Ditutup
+          </span>
           <a href="#schedule" class="btn-ghost-white">View Schedule</a>
         </div>
       </div>
@@ -2116,11 +2118,11 @@
         </div>
       </div>
       <div class="info-cell">
-        <div class="ic-icon">🎫</div>
+        <div class="ic-icon">🔒</div>
         <div>
-          <div class="ic-label">Entry Fee</div>
-          <div class="ic-value">FREE</div>
-          <div class="ic-sub">Open for all ages · T-shirt + mat included</div>
+          <div class="ic-label">Registration</div>
+          <div class="ic-value">Ditutup</div>
+          <div class="ic-sub">Kuota penuh · 2.000 peserta terdaftar</div>
         </div>
       </div>
     </div>
@@ -2242,7 +2244,8 @@
             <div class="notice-card-title">Datang Tepat Waktu — Paling Lambat 05.45 WIB</div>
             <p class="notice-card-text">Gate dibuka pukul <strong>05.30 WIB</strong>. Peserta wajib hadir paling lambat
               <strong>05.45 WIB</strong> untuk registrasi ulang, pengambilan wristband, kaos, dan penempatan yoga mat
-              sebelum Opening Ceremony pukul 06.00 WIB.</p>
+              sebelum Opening Ceremony pukul 06.00 WIB.
+            </p>
           </div>
         </div>
         <div class="notice-card reveal reveal-delay-2">
@@ -2598,6 +2601,7 @@
   </section> --}}
 
   <!-- ── CTA ── -->
+  <!-- ── CTA ── -->
   <section class="cta-sec">
     <div class="cta-bg"></div>
     <div class="cta-decor"></div>
@@ -2605,8 +2609,30 @@
     <p class="cta-quote">"Yoga Today, Healthy Tomorrow, Stronger Together for a Better Ageing."</p>
     <h2 class="cta-title">Join 2,000 <em>Participants</em></h2>
     <p class="cta-subtitle">Saturday, 20 June 2026 · UNWAHAS Stadium, Gunungpati, Semarang</p>
-    <a href="/register-event" class="cta-btn">Register Now →</a>
-    <p class="cta-note">Free entry · T-shirt, yoga mat &amp; snack included</p>
+
+    <!-- TAMBAHKAN BANNER INI -->
+    <div style="
+    display:inline-block;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(232,147,58,0.4);
+    border-radius:8px;
+    padding:18px 40px;
+    margin-bottom:16px;
+    position:relative;
+    z-index:1;
+  ">
+      <div style="font-size:28px;margin-bottom:6px;">🔒</div>
+      <div
+        style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--saffron);letter-spacing:0.04em;">
+        Pendaftaran Telah Ditutup
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:6px;">
+        Kuota 2.000 peserta telah terpenuhi. Terima kasih atas antusiasme Anda!
+      </div>
+    </div>
+
+    <br>
+    <p class="cta-note" style="margin-top:8px;">Sampai jumpa di UNWAHAS Stadium, 20 Juni 2026 🧘</p>
   </section>
 
   <!-- ── FOOTER ── -->
