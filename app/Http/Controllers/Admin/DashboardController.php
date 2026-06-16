@@ -61,11 +61,18 @@ class DashboardController extends Controller
 
     public function resendAll()
     {
-        $participants = Participant::all();
+        $participants = Participant::where('payment_status', 'paid')->get();
 
-        foreach ($participants as $participant) {
+        if ($participants->isEmpty()) {
+            return back()->with('info', 'Tidak ada peserta paid.');
+        }
+
+        foreach ($participants as $index => $participant) {
             \Mail::to($participant->email)
-                ->queue(new RegistrationSuccessMail($participant));
+                ->later(
+                    now()->addSeconds($index * 10), // jeda 10   detik per email
+                    new RegistrationSuccessMail($participant)
+                );
         }
 
         return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta.");
