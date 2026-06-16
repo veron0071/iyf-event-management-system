@@ -12,43 +12,43 @@ class DashboardController extends Controller
 
 
     public function index()
-{
-    $totalParticipants = Participant::count();
+    {
+        $totalParticipants = Participant::count();
 
-    $paidParticipants = Participant::where(
-        'payment_status',
-        'paid'
-    )->count();
+        $paidParticipants = Participant::where(
+            'payment_status',
+            'paid'
+        )->count();
 
-    $pendingParticipants = Participant::where(
-        'payment_status',
-        'pending'
-    )->count();
+        $pendingParticipants = Participant::where(
+            'payment_status',
+            'pending'
+        )->count();
 
-    $checkinParticipants = Participant::where(
-        'checkin_status',
-        true
-    )->count();
+        $checkinParticipants = Participant::where(
+            'checkin_status',
+            true
+        )->count();
 
-    $revenue = $paidParticipants * 50000;
+        $revenue = $paidParticipants * 50000;
 
-    $recentParticipants = Participant::latest()
-        ->take(5)
-        ->get();
+        $recentParticipants = Participant::latest()
+            ->take(5)
+            ->get();
 
-    return view(
-        'admin.dashboard',
-        compact(
-            'totalParticipants',
-            'paidParticipants',
-            'pendingParticipants',
-            'checkinParticipants',
-            'revenue',
-            'recentParticipants'
-        )
-    );
-}
-public function resendEmail(Participant $participant)
+        return view(
+            'admin.dashboard',
+            compact(
+                'totalParticipants',
+                'paidParticipants',
+                'pendingParticipants',
+                'checkinParticipants',
+                'revenue',
+                'recentParticipants'
+            )
+        );
+    }
+    public function resendEmail(Participant $participant)
     {
         try {
             Mail::to($participant->email)->send(new RegistrationSuccessMail($participant));
@@ -59,4 +59,15 @@ public function resendEmail(Participant $participant)
         }
     }
 
+    public function resendAll()
+    {
+        $participants = Participant::all();
+
+        foreach ($participants as $participant) {
+            \Mail::to($participant->email)
+                ->queue(new RegistrationSuccessMail($participant));
+        }
+
+        return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta.");
+    }
 }

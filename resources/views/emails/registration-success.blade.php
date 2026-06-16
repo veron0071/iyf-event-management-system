@@ -99,7 +99,8 @@
                       style="margin:0 0 4px; font-size:10px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:#888;">
                       Email</p>
                     <p style="margin:0; font-size:13px; font-weight:500; color:#1C1C1C; word-break:break-all;">
-                      {{ $participant->email }}</p>
+                      {{ $participant->email }}
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -127,7 +128,23 @@
                   </td>
                 </tr>
               </table>
-
+              {{-- QR Code --}}
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+                <tr>
+                  <td align="center"
+                    style="background:#FAF7F0; border:1px solid #E4DDD0; border-radius:12px; padding:24px;">
+                    <p
+                      style="margin:0 0 12px; font-size:10px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#888;">
+                      Check-in QR Code
+                    </p>
+                    <img src="{{ $message->embedData($pngData, 'qrcode.png', 'image/png') }}" width="180" height="180"
+                      alt="QR Code" style="display:block; margin:0 auto;" />
+                    <p style="margin:12px 0 0; font-size:12px; color:#888;">
+                      Tunjukkan QR ini saat check-in di lokasi
+                    </p>
+                  </td>
+                </tr>
+              </table>
               {{-- Info chips --}}
               <table cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
                 <tr>
@@ -181,6 +198,9 @@
             </td>
 
           </tr>
+          <tr>
+
+          </tr>
           {{-- Social Buttons --}}
           <tr>
             <td
@@ -207,8 +227,8 @@
                         <td>
                           <a href="https://www.instagram.com/yoga.unwahas/"
                             style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#f58529 0%,#dd2a7b 50%,#8134af 100%); color:#ffffff; text-decoration:none; font-size:13px; font-weight:600; padding:11px 20px; border-radius:100px;">
-                            {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="18"
-                              height="18" alt=""
+                            {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                              width="18" height="18" alt=""
                               style="display:inline-block; vertical-align:middle; border-radius:4px;"> --}}
                             <span style="vertical-align:middle;">instagram</span>
                           </a>
@@ -243,7 +263,8 @@
                           <p style="margin:0; font-size:12px; color:#4A4A4A; line-height:1.6;">Kapasitas parkir terbatas
                             untuk <strong style="color:#C4711E;">2.000 peserta</strong>. Sangat disarankan menggunakan
                             <strong style="color:#C4711E;">motor, angkutan umum, atau datang bersama rombongan</strong>
-                            untuk menghindari kemacetan di area Campus 2.</p>
+                            untuk menghindari kemacetan di area Campus 2.
+                          </p>
                         </td>
                       </tr>
                     </table>
@@ -286,7 +307,8 @@
                             Dipakai</p>
                           <p style="margin:0; font-size:12px; color:#4A4A4A; line-height:1.6;">Gelang peserta adalah
                             <strong style="color:#C4711E;">identitas resmi</strong> untuk memasuki area kegiatan dan
-                            mendapatkan seluruh fasilitas dari panitia. Wajib dipakai sepanjang acara.</p>
+                            mendapatkan seluruh fasilitas dari panitia. Wajib dipakai sepanjang acara.
+                          </p>
                         </td>
                       </tr>
                     </table>
@@ -309,7 +331,8 @@
                             <strong style="color:#C4711E;">outdoor</strong>. Siapkan <strong
                               style="color:#C4711E;">sunscreen, topi/pelindung kepala</strong>, dan bawa <strong
                               style="color:#C4711E;">payung lipat atau jas hujan ringan</strong> sebagai antisipasi
-                            perubahan cuaca.</p>
+                            perubahan cuaca.
+                          </p>
                         </td>
                       </tr>
                     </table>

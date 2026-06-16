@@ -2092,7 +2092,7 @@
         <div class="hero-poster-frame"></div>
         <div class="hero-poster-frame2"></div>
         <!-- IDY 2026 decorative card (replace with actual poster image) -->
-        <img class="hero-poster-img" src="{{ asset('images/poster5.jpeg') }}"
+        <img class="hero-poster-img" src="{{ asset('images/poster6.jpeg') }}"
           alt="International Yoga Festival 2026 Poster">
       </div>
     </div>

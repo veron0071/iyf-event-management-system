@@ -58,6 +58,7 @@ Route::middleware(['auth'])
 
         Route::get('/scanner', [AdminParticipantController::class, 'scanner'])->name('scanner');
         Route::post('/scanner/checkin', [AdminParticipantController::class, 'processCheckin'])->name('scanner.checkin');
+        Route::post('/participants/resend-all', [DashboardController::class, 'resendAll'])->name('participants.resend-all');
         Route::post('/participants/{participant}/resend-email', [AdminParticipantController::class, 'resendEmail'])
             ->name('participants.resend-email');
     });

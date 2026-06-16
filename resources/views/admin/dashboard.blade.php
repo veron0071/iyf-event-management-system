@@ -625,7 +625,8 @@
                 Pembayaran terverifikasi
               </div>
               <div class="progress-row-val">{{ $paidParticipants }} / {{ $totalParticipants }} &nbsp;·&nbsp;
-                {{ $paymentPct }}%</div>
+                {{ $paymentPct }}%
+              </div>
             </div>
             <div class="progress-track">
               <div class="progress-fill" style="width:{{ $paymentPct }}%; background:#4A8C62;"></div>
@@ -639,7 +640,8 @@
                 Sudah check-in (dari yang lunas)
               </div>
               <div class="progress-row-val">{{ $checkinParticipants }} / {{ $paidParticipants }} &nbsp;·&nbsp;
-                {{ $checkinPct }}%</div>
+                {{ $checkinPct }}%
+              </div>
             </div>
             <div class="progress-track">
               <div class="progress-fill" style="width:{{ $checkinPct }}%; background:#378ADD;"></div>
@@ -661,7 +663,7 @@
 
         </div>
       </div>
-      
+
       {{-- ── Quick links ── --}}
       <div class="section-label">Menu Cepat</div>
       <div class="quick-links">
@@ -744,6 +746,32 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </div>
+        </a>
+        <a>
+          <form method="POST" action="{{ route('admin.participants.resend-all') }}"
+            onsubmit="return confirm('Kirim ulang email ke SEMUA {{ $totalParticipants }} peserta?')">
+            @csrf
+            <button type="submit" class="quick-card" style="border:none; cursor:pointer; width:100%; text-align:left;">
+              <div class="quick-icon" style="background:#FDE8E8; color:#8C0A0A;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div class="quick-text">
+                <div class="quick-name">Resend Email Semua</div>
+                <div class="quick-desc">{{ $totalParticipants }} peserta · via queue</div>
+              </div>
+              <div class="quick-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </button>
+          </form>
+
         </a>
 
       </div>
