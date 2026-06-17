@@ -70,7 +70,7 @@ class DashboardController extends Controller
         foreach ($participants as $index => $participant) {
             \Mail::to($participant->email)
                 ->later(
-                    now()->addSeconds($index * 10), // jeda 10   detik per email
+                    now()->addSeconds($index * 60), // jeda 10   detik per email
                     new RegistrationSuccessMail($participant)
                 );
         }
