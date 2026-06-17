@@ -809,6 +809,7 @@
                 <th>Kota</th>
                 <th>Ukuran Baju</th>
                 <th>Gender</th>
+                <th>Email</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -893,6 +894,16 @@
                         Perempuan</span>
                     @else
                       <span style="color:var(--text-muted)">—</span>
+                    @endif
+                  </td>
+                  <td>
+                    @if($participant->email_sent_at)
+                      <span class="badge badge-paid">
+                        <span class="badge-dot"></span>
+                        Terkirim
+                      </span>
+                    @else
+                      <span class="badge badge-notcheckin">— Belum</span>
                     @endif
                   </td>
 

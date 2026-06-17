@@ -39,6 +39,7 @@ class Participant extends Model
         'npp',
         'work_unit',
         'payment_proof',
+        'email_sent_at',
         
     ];
 

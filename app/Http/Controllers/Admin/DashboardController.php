@@ -61,20 +61,31 @@ class DashboardController extends Controller
 
     public function resendAll()
     {
-        $participants = Participant::where('payment_status', 'paid')->get();
+        $participants = Participant::where('payment_status', 'paid')
+            ->whereNull('email_sent_at')
+            ->get();
 
         if ($participants->isEmpty()) {
-            return back()->with('info', 'Tidak ada peserta paid.');
+            return back()->with('info', 'Semua peserta sudah dikirim email.');
         }
+
+        $mailers = ['smtp1', 'smtp2', 'smtp3', 'smtp4', 'smtp5'];
+        $batchSize = 450; // sedikit di bawah 500 buat jaga-jaga
 
         foreach ($participants as $index => $participant) {
-            \Mail::to($participant->email)
+            $mailerIndex = intdiv($index, $batchSize);
+            $mailer = $mailers[$mailerIndex] ?? $mailers[array_key_last($mailers)];
+
+            Mail::mailer($mailer)
+                ->to($participant->email)
                 ->later(
-                    now()->addSeconds($index * 60), // jeda 10   detik per email
+                    now()->addSeconds(($index % $batchSize) * 60),
                     new RegistrationSuccessMail($participant)
                 );
+
+            $participant->update(['email_sent_at' => now()]);
         }
 
-        return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta.");
+        return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta menggunakan " . count($mailers) . " akun Gmail.");
     }
 }
