@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendRegistrationMailJob;
 use App\Mail\RegistrationSuccessMail;
 use App\Models\Participant;
 use Illuminate\Support\Facades\Mail;
@@ -60,32 +61,26 @@ class DashboardController extends Controller
     }
 
     public function resendAll()
-    {
-        $participants = Participant::where('payment_status', 'paid')
-            ->whereNull('email_sent_at')
-            ->get();
+{
+    $participants = Participant::where('payment_status', 'paid')
+        ->whereNull('email_sent_at')
+        ->get();
 
-        if ($participants->isEmpty()) {
-            return back()->with('info', 'Semua peserta sudah dikirim email.');
-        }
-
-        $mailers = ['smtp1', 'smtp2', 'smtp3', 'smtp4', 'smtp5'];
-        $batchSize = 450; // sedikit di bawah 500 buat jaga-jaga
-
-        foreach ($participants as $index => $participant) {
-            $mailerIndex = intdiv($index, $batchSize);
-            $mailer = $mailers[$mailerIndex] ?? $mailers[array_key_last($mailers)];
-
-            Mail::mailer($mailer)
-                ->to($participant->email)
-                ->later(
-                    now()->addSeconds(($index % $batchSize) * 60),
-                    new RegistrationSuccessMail($participant)
-                );
-
-            $participant->update(['email_sent_at' => now()]);
-        }
-
-        return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta menggunakan " . count($mailers) . " akun Gmail.");
+    if ($participants->isEmpty()) {
+        return back()->with('info', 'Semua peserta sudah dikirim email.');
     }
+
+    $mailers = ['smtp1', 'smtp2', 'smtp3', 'smtp4', 'smtp5'];
+    $batchSize = 450;
+
+    foreach ($participants as $index => $participant) {
+        $mailerIndex = intdiv($index, $batchSize);
+        $mailer = $mailers[$mailerIndex] ?? $mailers[array_key_last($mailers)];
+
+        SendRegistrationMailJob::dispatch($participant, $mailer)
+            ->delay(now()->addSeconds(($index % $batchSize) * 10));
+    }
+
+    return back()->with('success', "Email dijadwalkan untuk {$participants->count()} peserta.");
+}
 }
