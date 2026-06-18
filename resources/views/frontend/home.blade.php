@@ -2355,7 +2355,7 @@
         <div class="facility-card">
           <div class="fac-icon">🅿️</div>
           <div>
-            <div class="fac-name">Free Parking</div>
+            <div class="fac-name">Parking Location</div>
             <p class="fac-desc">Area parkir tersedia di halaman Campus 2.</p>
           </div>
         </div>
